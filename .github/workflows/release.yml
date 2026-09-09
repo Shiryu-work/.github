@@ -1,0 +1,31 @@
+name: リリース
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - labeled
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  release-checks:
+    if: contains(github.event.pull_request.labels.*.name, 'release')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: リリース検証を実行
+        shell: bash
+        run: bash .github/リリース検証.sh
