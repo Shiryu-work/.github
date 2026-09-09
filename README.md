@@ -2,6 +2,8 @@
 
 このリポジトリは、`Shiryu-work` 配下のリポジトリへ適用するGitHub共通設定だけを管理します。
 
+AI / agentでこのリポジトリを扱う場合は、エージェントモードかどうかに関係なく、最初に [`AGENTS.md`](./AGENTS.md) を必ず読んでください。
+
 ## 管理対象
 
 - `.github/ISSUE_TEMPLATE/` — Org共通Issueテンプレート
