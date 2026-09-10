@@ -36,6 +36,12 @@ Org共通の機械契約として使う標準ラベルは次の4つです。
 
 既存リポジトリのラベルはOrg既定値へ自動同期されないため、必要に応じて別途同期します。
 
+## PR / merge の共通baseline
+
+通常の開発統合では、GitHub上のApprove reviewをOrg共通の必須gateにしません。各Repositoryで必要な決定的検証が成功し、Product固有の意味監査・ローカルQA・`要人手` 等の追加確認が残っていなければ、そのRepositoryの開発統合先へmergeして構いません。
+
+レビューが必要な変更は、変更内容固有の理由がある場合だけ要求します。CI成功を文章・意味・安全性等の保証へ読み替えず、Repository固有の追加gateは維持します。Issue / PR / `検証待ち` / self-hosted CIの詳細な運用原則は `Shiryu-work/ai-native-template` の `開発/Issue運用.md` と `開発/作業管理.md` を参照します。
+
 ## 可視性
 
 Org共通IssueテンプレートをGitHubに適用させるため、この `.github` リポジトリは **Public** にします。対象となる各リポジトリ自体はPrivateでも構いません。
