@@ -6,6 +6,7 @@
 
 - Repositoryの責務と現行運用は `README.md` を読む
 - `.github/` 配下の変更はOrganization共通設定として扱う
+- Issueテンプレートの類型・タイトル接頭辞・必須見出し・見出し階層は `Shiryu-work/ai-native-template` の `開発/Issue形式.json` を正本とし、変更時は `開発/Issue運用原則.md` と合わせて確認する
 - Product固有の仕様、設計、実装規約、AI向け文脈、検証ロジックをここへ複製しない
 - Product固有の作業では、対象Repositoryの `AGENTS.md` を入口にする
 - 実行していない確認や同期を完了扱いしない
