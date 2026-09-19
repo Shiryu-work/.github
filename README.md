@@ -1,52 +1,48 @@
-# Shiryu-work GitHub 共通設定
+# Shiryu-work GitHub共通設定
 
-このリポジトリは、`Shiryu-work` 配下のリポジトリへ適用するGitHub共通設定だけを管理します。
+このRepositoryは、`Shiryu-work` Organization配下へ適用する公開GitHub共通設定とUI projectionを管理します。
 
-AI / agentでこのリポジトリを扱う場合は、エージェントモードかどうかに関係なく、最初に [`AGENTS.md`](./AGENTS.md) を必ず読んでください。
+AI / agentで扱う場合は最初に `AGENTS.md` を読みます。
 
 ## 管理対象
 
-- `.github/ISSUE_TEMPLATE/` — Org共通Issueテンプレート
-- `README.md` — このリポジトリの責務と運用
+- `.github/ISSUE_TEMPLATE/` — Org共通Issue入力template。
+- `README.md` / `AGENTS.md` — このRepositoryの責務とrouting。
 
-プロダクトの仕様、設計、実装規約、AI向け文脈、検証ロジックはここへ複製せず、各リポジトリを管理元とします。
+Productの仕様・設計・実装規約、Template baseline本文、validator実装、runner秘密情報はここへ複製しません。
 
-## Issueテンプレート
+## Issue template
 
-Org共通Issueテンプレートは入力補助であり、類型・タイトル接頭辞・必須見出し・見出し階層の機械契約は `Shiryu-work/ai-native-template` の `開発/Issue形式.json` を唯一の管理元とします。テンプレートはその現行契約へ一致させ、独自の必須形式を追加しません。
+Org共通Issue templateは入力補助のprojectionです。成果型、title接頭辞、必須見出し、親子意味のauthoring originは `Shiryu-work/template` です。
 
-成果型は次の4種類です。
+参照先:
 
-- `目標管理` — 独立した目的体系を、目的・目標状態・課題・手段・検証の親子関係で管理する
-- `考察・判断` — 材料と選択肢を比較し、判断を確定することが成果
-- `タスク` — 何かを実現・変更することが成果
-- `資料` — 比較・調査・時点付き情報など、後から参照する有限な記録が成果
+- `開発/Issue運用.md`
+- `開発/Issue形式.json`
+- `開発/Issue親子.json`
 
-各リポジトリに独自の `.github/ISSUE_TEMPLATE` がある場合は、そのリポジトリ側が優先されます。ただし `ai-native-template` のIssue決定的検証を利用するRepositoryでは、独自テンプレートも `開発/Issue形式.json` の現行契約へ一致させます。
+Template側の共通判断が変わった場合はfinite rolloutでこのprojectionを更新します。Template変更をruntimeで自動fetchするgeneric syncは前提にしません。
 
-## Org共通ラベル
+各Repositoryに独自の `.github/ISSUE_TEMPLATE` がある場合はそのRepository側がUI上優先されますが、Template由来Issue contractを採用しているRepositoryでは意味を矛盾させません。
 
-ラベルはこのリポジトリのファイルではなく、GitHub Organization の Repository defaults で管理します。
+## Organization設定
 
-Org共通の機械契約として使う標準ラベルは次の4つです。
+Organization Actions policy、Repository defaults、runner group等の実値はGitHub Organizationの設定実体がcurrent stateです。このRepositoryへ値を第二台帳として転記しません。
 
-- `AI:着手可能`
-- `AI:進行中`
-- `要人手`
-- `検証待ち`
+Repository-levelのGitHub Actions security / operation contractは `Shiryu-work/template` の `開発/GitHub Actions.md` / `開発/GitHub Actions規約.json` がauthoring originです。Organization側では利用可能なsettingをenforcementとして適用します。
 
-4ラベルは現在の次操作を表します。`検証終了` のような履歴ラベルや `分類:*` のような補助ラベルはOrg共通契約には含めません。
+self-hosted runnerのmachine provisioning、registration tokenの扱い、service保守、private runner metadataは `Shiryu-work/.github-private` が管理します。
 
-既存リポジトリのラベルはOrg既定値へ自動同期されないため、必要に応じて別途同期します。
+## branch / PR
 
-## PR / merge の共通baseline
+通常開発のbranch意味と標準名は `Shiryu-work/template` の `開発/ブランチ運用.md` を参照します。
 
-通常の開発統合では、GitHub上のApprove reviewをOrg共通の必須gateにしません。各Repositoryで必要な決定的検証が成功し、Product固有の意味監査・ローカルQA・`要人手` 等の追加確認が残っていなければ、そのRepositoryの開発統合先へmergeして構いません。
+GitHub上のApprove reviewをOrg共通の形式的必須gateにはしません。各Repositoryで必要な決定的検証と変更固有の追加確認が済んでいることを優先します。CI成功を文章・意味・安全性等の保証へ読み替えません。
 
-レビューが必要な変更は、変更内容固有の理由がある場合だけ要求します。CI成功を文章・意味・安全性等の保証へ読み替えず、Repository固有の追加gateは維持します。
+## label
 
-Issueの類型・本文形式・自動検証は `Shiryu-work/ai-native-template` の `開発/Issue運用原則.md` と `開発/Issue形式.json`、通常開発のbranch運用は `開発/ブランチ運用原則.md`、self-hosted runnerは `開発/M1セルフホスト実行環境.md` を参照します。
+Organization Repository defaultsで管理する共通labelはGitHub側設定をcurrent stateとします。fileへ設定値を複製して同期元にしません。
 
 ## 可視性
 
-Org共通IssueテンプレートをGitHubに適用させるため、この `.github` リポジトリは **Public** にします。対象となる各リポジトリ自体はPrivateでも構いません。
+Org共通Issue templateをGitHubへ適用するため、このRepositoryはPublicです。private infrastructure情報はここへ置きません。
